@@ -25,6 +25,10 @@ regtecnica=read.csv("regtecnica.csv",header=T,sep=";",dec=",")
 
 #### Descripción de la data
 
+``` r
+kable(summarizeColumns(regtecnica))
+```
+
 | name          | type    |   na|          mean|          disp|    median|           mad|      min|       max|  nlevs|
 |:--------------|:--------|----:|-------------:|-------------:|---------:|-------------:|--------:|---------:|------:|
 | potenciaresp  | numeric |    0|   571.2553030|   169.5382789|   578.230|   186.2946204|  255.123|   949.529|      0|
@@ -38,6 +42,13 @@ regtecnica=read.csv("regtecnica.csv",header=T,sep=";",dec=",")
 #### Partición muestral
 
 Dividimos la data en proporción a 0.8 - 0.2. Esta forma de dividir solo es eficiente para dataset con un target numérico. Para el caso de clasificación se usará otra sentencia que se verá más adelante.
+
+``` r
+set.seed(1234) 
+sample <- sample.int(nrow(regtecnica), round(.8*nrow(regtecnica)))
+regtecnica.train<- regtecnica[sample, ]
+regtecnica.valid <- regtecnica[-sample, ]
+```
 
 #### Supuestos
 
