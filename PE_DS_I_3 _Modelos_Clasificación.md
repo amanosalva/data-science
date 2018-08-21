@@ -14,7 +14,7 @@ library(corrplot)
 library(knitr)
 ```
 
-### 2). Modelo de Regresion Logistica
+### 2). Modelo de Regresión Logística
 
 #### Cargar la data (limpia)
 
