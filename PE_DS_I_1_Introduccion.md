@@ -1,10 +1,3 @@
-<style type="text/css">
-.main-container {
-  max-width: 1800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
 ### 1. Planteamiento del problema
 
 La compañía Dream Housing Finance se ocupa de todos los **préstamos hipotecarios**. Tienen presencia en todas las áreas urbanas, semi urbanas y rurales. El cliente primero solicita un préstamo hipotecario luego de que esa compañía valida la elegibilidad del cliente para el préstamo.
