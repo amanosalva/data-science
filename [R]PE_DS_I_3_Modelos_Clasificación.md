@@ -12,6 +12,7 @@ library(caret)
 library(pROC)
 library(corrplot)
 library(knitr)
+library(DMwR)
 ```
 
 ### 2). Modelo de Regresión Logística
