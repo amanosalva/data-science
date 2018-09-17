@@ -1,4 +1,6 @@
 # Python-and-Spark-for-Big-Data
+**Toda esta carpeta le pertenece originalmente al científico de datos Jose Portilla, el cual posee un curso online en la plataforma UDEMY. Puede encontrar el curso en el siguiente link: https://www.udemy.com/spark-and-python-for-big-data-with-pyspark/ ** Personalmente el curso me parace excelente, lo recomiendo al 100%.
+
 Course Notebooks for Python and Spark for Big Data
 
 Course Outline:
