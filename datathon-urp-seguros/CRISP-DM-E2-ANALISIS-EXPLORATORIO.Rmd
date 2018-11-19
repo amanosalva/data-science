@@ -1,0 +1,117 @@
+---
+title: "CRISP-DM E2 - Entendimiento de la data"
+author: "amanosalva"
+date: "19 de noviembre de 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descripción del problea
+
+Los modelos analíticos para el manejo de los seguros de accidentes se están usando por muchas instituciones y están dando resultados exitosos en todo el mundo. Los modelos analíticos de se pueden definir como un conjunto de métodos y técnicas cuantitativas usados para predecir la probabilidad de que un cliente falle (Sea siniestroso) y en consecuencia no se recupere el rédito otorgado por alguna institución.
+
+## Reto
+
+Identifique los clientes que tienen una alta probabilidad de siniestro.
+
+### 1. Instalación y activación de librerías necesarias:
+
+```{r librerias, warning=FALSE, error=FALSE, message=FALSE}
+#install.packages('DataExplorer', dependencies = T) 
+library(mlr)
+library(dplyr)
+library(DataExplorer)
+```
+
+### 2. Ingesta de la data
+
+```{r ingesta}
+train <- read.csv("train_seguros.csv", header = T)
+```
+
+### 3. Análisis exploratorio
+
+**Graficando los valores faltantes para una mejor visión global:**
+
+```{r grafica_missing}
+PlotMissing(train)
+```
+
+**En caso de querer saber los valores exactos de los NA:**
+
+```{r summarize, warning=FALSE}
+summarizeColumns(train)
+```
+
+Las siguientes columnas tienen valores NA:
+Antiguedad_Maxima - 587
+edad_Maxima - 273
+Puntaje_MorosidadX, donde 1 <= x <= 5
+
+**Viendo la estructura de la data**
+
+```{r estructura}
+PlotStr(train)
+```
+
+Curiosamente vemos que la variable "Siniestro6" tiene tres niveles: "", "si", "no". Ese espacio en blanco debe ser considerado como ata faltante? Habría que ver su proporción o influencia.
+
+```{r levels_siniestros6}
+levels(train$Siniestros6)
+```
+
+**Distribuciones**
+
+Viendo las distribuciones numéricas:
+
+_Separamos solo los numéricos_
+
+```{r numericos}
+train_numericos <- select_if(train, is.numeric)
+names(train_numericos)
+```
+
+_Graficamos histogramas:_
+
+```{r histogramas_numericos}
+HistogramContinuous(train_numericos[1:9])
+HistogramContinuous(train_numericos[10:length(train_numericos)])
+```
+
+
+Viendo las distribuciones categóricas:
+
+_Separamos solo categóricos_
+
+```{r factores}
+train_factores <- select_if(train, is.factor)
+names(train_factores)
+```
+
+_Graficamos barras:_
+
+```{r barras_factores}
+BarDiscrete(train_factores)
+```
+
+**Correlaciones**
+
+_Viendo las correlaciones continuas:_
+
+```{r correlacion_continuas}
+CorrelationContinuous(train_numericos)
+```
+
+_Viendo las correlaciones discretas:_
+
+
+```{r correlacion_discretas}
+CorrelationDiscrete(train_factores)
+```
+
+
